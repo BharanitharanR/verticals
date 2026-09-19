@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#170D14" />
+  <title>VERTICALS — Your business, answered on WhatsApp.</title>
+  <meta name="description" content="Your own AI-powered WhatsApp assistant for your business. Powered by Adiyan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Mulish:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="grain"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Verticals home">
+      <span class="brand-name">VERTICALS</span>
+      <span class="brand-sub">AI WORKS FOR THE PEOPLE</span>
+    </a>
+    <nav>
+      <a href="#businesses">BUSINESSES</a>
+      <a href="#demo">TRY IT</a>
+      <a href="#how">HOW IT WORKS</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="header-cta" href="#contact">GET YOUR ASSISTANT <span>→</span></a>
+    <span class="powered">powered by Adiyan</span>
+  </header>
+
+  <main id="top">
+    <section class="hero section-pad">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">A SMALL BUSINESS MACHINE · 001</p>
+        <h1>Your business, <em>answered</em> on WhatsApp.</h1>
+        <p class="hero-lede">An AI assistant built around your business — trained on your offers, prices and policies, and ready whenever a customer messages you.</p>
+        <div class="hero-actions">
+          <a class="button gold big" href="#demo">SEE IT IN ACTION <span>→</span></a>
+        </div>
+      </div>
+      <div class="hero-art reveal delayed">
+        <img src="assets/dreaming-host.jpg" alt="Cubist Dreaming Host illustration" />
+      </div>
+    </section>
+
+    <section id="businesses" class="verticals-section section-pad">
+      <div class="section-intro reveal">
+        <p class="eyebrow">ONE PLATFORM, FOUR WAYS TO USE IT</p>
+        <h2>Choose your vertical.</h2>
+        <p>Four kinds of businesses already run their WhatsApp on Verticals.</p>
+      </div>
+
+      <div class="verticals-grid-simple">
+        <article class="vertical-card-simple reveal">
+          <div class="card-art"><img src="assets/dreaming-host.jpg" alt="The Dreaming Host" /></div>
+          <div class="card-body">
+            <span class="card-eyebrow">SERVICES · CREATIVITY · COMMUNITY</span>
+            <h3>The Dreaming Host</h3>
+            <p>Answers questions, welcomes new enquiries, and gathers what a customer needs before handoff.</p>
+          </div>
+        </article>
+        <article class="vertical-card-simple reveal">
+          <div class="card-art"><img src="assets/merchant.jpg" alt="The Merchant" /></div>
+          <div class="card-body">
+            <span class="card-eyebrow">RETAIL · STORES · BRANDS</span>
+            <h3>The Merchant</h3>
+            <p>Answers product questions, takes orders, checks stock, and follows up automatically.</p>
+          </div>
+        </article>
+        <article class="vertical-card-simple reveal">
+          <div class="card-art"><img src="assets/harlequin.jpg" alt="The Harlequin" /></div>
+          <div class="card-body">
+            <span class="card-eyebrow">BOOKINGS · SUPPORT · OPERATIONS</span>
+            <h3>The Harlequin</h3>
+            <p>Captures bookings, answers timing questions, and routes anything complex to a person.</p>
+          </div>
+        </article>
+        <article class="vertical-card-simple reveal">
+          <div class="card-art"><img src="assets/shared-city.jpg" alt="The Shared City" /></div>
+          <div class="card-body">
+            <span class="card-eyebrow">COMMUNITIES · ASSOCIATIONS · BEYOND</span>
+            <h3>The Shared City</h3>
+            <p>Shares announcements, answers recurring member questions, and points people to the right contact.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="demo" class="demo section-pad">
+      <div class="section-heading reveal">
+        <p class="eyebrow">TRY IT YOURSELF</p>
+        <h2>Ask it something.</h2>
+        <p>A live demo of a Verticals assistant for a small retail shop.</p>
+      </div>
+      <div class="assistant-window reveal">
+        <div class="assistant-head"><span class="status-dot"></span> VERTICALS · ONLINE</div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat bot">Hey! Welcome — how can I help you today?</div>
+        </div>
+        <div class="chat-chips">
+          <button type="button" class="chip" data-msg="Are you open today?">Are you open today?</button>
+          <button type="button" class="chip" data-msg="What's the price for 20?">What's the price for 20?</button>
+          <button type="button" class="chip" data-msg="Can I book an appointment?">Can I book an appointment?</button>
+        </div>
+        <form class="chat-input-row" id="chatForm">
+          <input type="text" class="chat-input" id="chatInput" placeholder="Type a message…" autocomplete="off" />
+          <button type="submit" class="chat-send">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="how" class="how section-pad">
+      <div class="section-heading reveal"><p class="eyebrow">THREE STEPS</p><h2>From your business to your WhatsApp.</h2></div>
+      <div class="steps">
+        <article class="step reveal"><span class="step-no">01</span><p class="eyebrow">TELL US</p><h3>Tell us about your business.</h3><p>What you sell, your hours, and the questions customers ask most.</p></article>
+        <article class="step reveal"><span class="step-no">02</span><p class="eyebrow">WE BUILD</p><h3>We build your assistant.</h3><p>Your offers, prices and policies become its working knowledge — no software project required.</p></article>
+        <article class="step reveal"><span class="step-no">03</span><p class="eyebrow">IT ANSWERS</p><h3>It answers your customers.</h3><p>It responds on WhatsApp and brings you the moments that need a person.</p></article>
+      </div>
+    </section>
+
+    <section id="faq" class="faq section-pad">
+      <div class="section-heading reveal"><p class="eyebrow">QUESTIONS, ANSWERED</p><h2>Frequently asked.</h2></div>
+      <div class="faq-list">
+        <details open><summary>Is this a chatbot?<span>+</span></summary><p>It's an AI assistant shaped around your business — built to take useful action, not just chat.</p></details>
+        <details><summary>Do I need a technical team?<span>+</span></summary><p>No. We handle the setup; you bring the knowledge of your business.</p></details>
+        <details><summary>What happens when it can't answer?<span>+</span></summary><p>It asks for clarification or hands the conversation to a person, instead of guessing.</p></details>
+      </div>
+    </section>
+
+    <section id="contact" class="contact section-pad reveal">
+      <div class="contact-inner">
+        <p class="eyebrow">GET STARTED</p>
+        <h2>Give your business<br><em>an answer.</em></h2>
+        <p>Tell us what your business does. We'll show you what your assistant could do.</p>
+        <a class="button gold big" href="mailto:adiayanandai@gmail.com?subject=I%20want%20a%20Verticals%20assistant">START A CONVERSATION <span>→</span></a>
+        <div class="contact-meta"><span>VERTICALS</span><span>POWERED BY ADIYAN</span><span>© 2026</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>VERTICALS</span><span>AI WORKS FOR THE PEOPLE</span><a href="#top">BACK TO TOP ↑</a></footer>
+  <script src="script.js"></script>
+</body>
+</html>
