@@ -19,7 +19,7 @@ main,header,footer{position:relative;z-index:1}
 .brand{display:flex;align-items:center;gap:12px}
 .brand-mark{position:relative;display:block;width:34px;height:34px;border-radius:2px;overflow:hidden}
 .brand-mark img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.brand-mark:hover .art-color{opacity:1}
+.brand-mark:hover .art-color,.brand-mark.touch-active .art-color{opacity:1}
 .brand-text{display:flex;flex-direction:column;line-height:1.1}
 .brand-name{font:700 20px "Space Grotesk",sans-serif;letter-spacing:-.02em}
 .brand-sub,.eyebrow{font:500 10px "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase}
@@ -102,7 +102,7 @@ main,header,footer{position:relative;z-index:1}
 .art-color{opacity:0;transition:opacity .35s ease;
   -webkit-mask-image:radial-gradient(ellipse 280px 100% at var(--mx,50%) 50%,#000 0%,transparent 100%);
   mask-image:radial-gradient(ellipse 280px 100% at var(--mx,50%) 50%,#000 0%,transparent 100%)}
-.card-art:hover .art-color{opacity:1}
+.card-art:hover .art-color,.card-art.touch-active .art-color{opacity:1}
 .card-body{padding:20px 18px 24px;flex:1;display:flex;flex-direction:column;gap:8px}
 .card-eyebrow{font:500 9.5px "IBM Plex Mono",monospace;letter-spacing:.04em;color:var(--ink-soft)}
 .card-body h3{font:700 22px "Space Grotesk",sans-serif;margin:0}

@@ -6,13 +6,26 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // vertical-card artwork AND the header logo mark: color follows the
 // cursor's horizontal position (see .art-color's mask-image in
-// styles.css) - plain mousemove, no library, since it's just one CSS
-// custom property per element.
+// styles.css). Plain mousemove drives it on desktop; :hover has no real
+// equivalent on a touchscreen (there's no cursor sitting still on the
+// element), so a tap toggles a .touch-active class instead - styles.css
+// triggers the same reveal from either. --mx defaults to center (50%) on
+// tap since there's no cursor position to read.
 document.querySelectorAll('.card-art, .brand-mark').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
     const pct = ((e.clientX - rect.left) / rect.width) * 100;
     card.style.setProperty('--mx', `${pct}%`);
+  });
+  card.addEventListener('touchstart', e => {
+    const touch = e.touches[0];
+    const rect = card.getBoundingClientRect();
+    const pct = ((touch.clientX - rect.left) / rect.width) * 100;
+    card.style.setProperty('--mx', `${pct}%`);
+    card.classList.add('touch-active');
+  }, { passive: true });
+  card.addEventListener('touchend', () => {
+    setTimeout(() => card.classList.remove('touch-active'), 400);
   });
 });
 
