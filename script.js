@@ -67,15 +67,42 @@ function showError(message) {
 
 // Confirmed live: end to end (reading the description, writing the config,
 // and — when the description implies one — creating and activating a real
-// n8n workflow) can take up to ~100 seconds on ordinary hardware. A single
-// static "BUILDING…" label that long reads as broken, so this rotates
-// through a few honest progress messages instead of pretending it's instant.
+// n8n workflow) can take up to ~100 seconds on ordinary hardware. Holding
+// ONE fetch open that long is fragile — confirmed live that a weak mobile
+// connection killed it outright partway through. So the backend starts the
+// work as a background job and returns immediately; this polls for the
+// result instead of waiting on one long request, so a dropped poll never
+// loses the work in progress, it just gets picked up on the next poll.
 const BUILD_STAGES = [
   'READING YOUR BUSINESS…',
   'WRITING YOUR ASSISTANT…',
   'SETTING UP WHATSAPP…',
   'ALMOST THERE…',
 ];
+const POLL_INTERVAL_MS = 3000;
+const POLL_TIMEOUT_MS = 3 * 60 * 1000;
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function pollJob(jobId) {
+  const deadline = Date.now() + POLL_TIMEOUT_MS;
+  while (Date.now() < deadline) {
+    await sleep(POLL_INTERVAL_MS);
+    try {
+      const res = await fetch(`${API_BASE}/verticals/status/${jobId}`);
+      const data = await res.json();
+      if (data.status === 'done') return data.result;
+      if (data.status === 'not_found') throw new Error('job not found');
+      // 'pending' — keep polling
+    } catch (err) {
+      // A single dropped poll on a flaky connection isn't fatal — the
+      // background job keeps running regardless; just try again.
+    }
+  }
+  throw new Error('timed out waiting for a result');
+}
 
 if (demoForm) {
   demoForm.addEventListener('submit', async e => {
@@ -95,16 +122,21 @@ if (demoForm) {
     }, 12000);
 
     try {
-      const res = await fetch(`${API_BASE}/verticals/register`, {
+      const startRes = await fetch(`${API_BASE}/verticals/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ description }),
       });
-      const data = await res.json();
-      if (data.ok) {
-        showResult(data);
+      const started = await startRes.json();
+      if (!started.ok) {
+        showError(started.error || "Couldn't start that right now — try again in a moment.");
+        return;
+      }
+      const result = await pollJob(started.job_id);
+      if (result.ok) {
+        showResult(result);
       } else {
-        showError(data.error || "Couldn't build that right now — try again in a moment.");
+        showError(result.error || "Couldn't build that right now — try again in a moment.");
       }
     } catch (err) {
       showError("Couldn't reach the demo right now — try again in a moment.");
