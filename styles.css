@@ -50,6 +50,8 @@ main,header,footer{position:relative;z-index:1}
 .console-head{display:flex;justify-content:space-between;align-items:center;font:500 10px "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}
 .status-tag{display:inline-flex;align-items:center;gap:6px}
 .hero-demo h2{font:700 clamp(22px,2vw,28px)/1.15 "Space Grotesk",sans-serif;margin:0 0 10px}
+.demo-promise{color:var(--ink);font-size:13.5px;line-height:1.6;margin:0 0 16px;padding-left:14px;border-left:2px solid var(--ink)}
+.demo-promise em{font-style:normal;background:var(--ink);color:var(--paper);padding:0 6px}
 .demo-instructions{color:var(--ink-soft);font-size:13.5px;line-height:1.6;margin:0 0 12px}
 .demo-checklist{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:7px;font-family:"IBM Plex Mono",monospace}
 .demo-checklist li{color:var(--ink);font-size:12.5px;line-height:1.5;padding-left:18px;position:relative}
