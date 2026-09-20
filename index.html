@@ -3,43 +3,45 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#170D14" />
+  <meta name="theme-color" content="#f4f4f0" />
   <title>VERTICALS — Your business, answered on WhatsApp.</title>
   <meta name="description" content="Your own AI-powered WhatsApp assistant for your business. Powered by Adiyan." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Mulish:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="grain"></div>
+  <div class="grid-bg"></div>
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Verticals home">
       <span class="brand-name">VERTICALS</span>
-      <span class="brand-sub">AI WORKS FOR THE PEOPLE</span>
+      <span class="brand-sub">SYS / 001 · LOCAL NODE</span>
     </a>
     <nav>
+      <a href="#how">HOW IT WORKS</a>
+      <a href="#edge">THE AI EDGE</a>
       <a href="#businesses">BUSINESSES</a>
       <a href="#demo">TRY IT LIVE</a>
-      <a href="#how">HOW IT WORKS</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="header-cta" href="#demo">GET YOUR ASSISTANT <span>→</span></a>
-    <span class="powered">powered by Adiyan</span>
   </header>
 
   <main id="top">
     <section class="hero section-pad" id="demo">
       <div class="hero-copy reveal">
-        <p class="eyebrow">WHAT IS VERTICALS?</p>
-        <h1>Your business, <em>answered</em> on WhatsApp.</h1>
-        <p class="hero-lede">Verticals gives your business its own AI assistant on WhatsApp — trained on what you tell it, answering your customers for you, day or night.</p>
+        <p class="eyebrow">VERTICALS / 001 · WHAT IS IT</p>
+        <h1>Your business, <span class="hl">answered</span> on WhatsApp.</h1>
+        <p class="hero-lede">Verticals runs on your own machine, under your own WhatsApp number. You decide what customers see and how the conversation goes — in plain English, no code. It handles the talking, and quietly runs the numbers behind the scenes.</p>
       </div>
 
       <div class="hero-demo reveal delayed" id="verticalsDemo">
-        <p class="eyebrow">TRY IT — AS YOUR OWN CUSTOMER</p>
+        <div class="console-head">
+          <span>MODULE / LIVE DEMO</span>
+          <span class="status-tag"><i class="status-dot"></i> READY</span>
+        </div>
         <h2>Describe your business. We'll build it live.</h2>
         <p class="demo-instructions">Write it the way you'd explain it to a new customer. The more of these you cover, the better it comes out:</p>
         <ul class="demo-checklist">
@@ -51,7 +53,7 @@
         </ul>
         <form id="demoForm">
           <textarea id="demoInput" maxlength="600" rows="5" placeholder="e.g. We run a bakery in Chennai called Sweet Crumbs. We sell cakes, pastries and custom order cakes, open 9am to 8pm every day. We're warm and friendly, and customers should be able to book a custom cake order in advance." required></textarea>
-          <button type="submit" class="button gold big" id="demoSubmit">BUILD MY ASSISTANT <span>→</span></button>
+          <button type="submit" class="button" id="demoSubmit">BUILD MY ASSISTANT <span>→</span></button>
         </form>
         <p class="demo-note">A real, working assistant — live for one hour so you can try it yourself, no signup needed. Takes up to a minute to build.</p>
         <div class="demo-result" id="demoResult" hidden></div>
@@ -59,9 +61,45 @@
       </div>
     </section>
 
+    <section id="how" class="how section-pad">
+      <div class="section-heading reveal"><p class="eyebrow">VERTICALS / 002 · PROCESS</p><h2>Yours. Installed, not rented.</h2></div>
+      <div class="steps">
+        <article class="step reveal"><span class="step-no">01</span><p class="eyebrow">INSTALL &amp; CONNECT</p><h3>Run it on your own machine.</h3><p>Install Verticals and link your own WhatsApp number as the owner. Nobody else's server sits in between.</p></article>
+        <article class="step reveal"><span class="step-no">02</span><p class="eyebrow">SET THE RULES</p><h3>You write the flow, in plain English.</h3><p>Upload what your business does, then decide exactly what customers see and how the conversation should run. Your rules, not a template.</p></article>
+        <article class="step reveal"><span class="step-no">03</span><p class="eyebrow">IT RUNS THE FLOOR</p><h3>It handles customers your way.</h3><p>Every message gets treated exactly how you designed it — day or night, no one watching the phone.</p></article>
+      </div>
+    </section>
+
+    <section id="edge" class="edge section-pad">
+      <div class="section-heading reveal">
+        <p class="eyebrow">VERTICALS / 003 · THE AI EDGE</p>
+        <h2>It doesn't just talk to customers. It watches the business.</h2>
+        <p>Underneath every conversation, Verticals is also orchestrating and analysing — turning ordinary activity into a plain-English action plan. Daily, weekly, or monthly. Your call.</p>
+      </div>
+      <div class="insight-card reveal delayed">
+        <div class="console-head">
+          <span>MODULE / BUSINESS INSIGHT</span>
+          <span class="status-tag"><i class="status-dot"></i> EXAMPLE</span>
+        </div>
+        <p class="insight-setup">Say you run a restaurant, and there's another one right across the street.</p>
+        <div class="insight-row">
+          <span class="insight-tag">OBSERVATION</span>
+          <p>Foot traffic next door spikes hard, 6–8pm, Thursday through Saturday. Yours doesn't move.</p>
+        </div>
+        <div class="insight-row">
+          <span class="insight-tag">DEEP DIVE</span>
+          <p>Verticals traces exactly when that gap opened up, and what changed around it.</p>
+        </div>
+        <div class="insight-row">
+          <span class="insight-tag">ACTION</span>
+          <p>Try a dinner-hour coupon in that exact window this week, then measure what happens to yours.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="businesses" class="verticals-section section-pad">
       <div class="section-intro reveal">
-        <p class="eyebrow">ONE PLATFORM, FOUR WAYS TO USE IT</p>
+        <p class="eyebrow">VERTICALS / 004 · COVERAGE</p>
         <h2>Choose your vertical.</h2>
         <p>Four kinds of businesses already run their WhatsApp on Verticals.</p>
       </div>
@@ -70,7 +108,7 @@
         <article class="vertical-card-simple reveal">
           <div class="card-art"><img src="assets/dreaming-host.jpg" alt="The Dreaming Host" /></div>
           <div class="card-body">
-            <span class="card-eyebrow">SERVICES · CREATIVITY · COMMUNITY</span>
+            <span class="card-eyebrow">01 / 04 — SERVICES · CREATIVITY · COMMUNITY</span>
             <h3>The Dreaming Host</h3>
             <p>Answers questions, welcomes new enquiries, and gathers what a customer needs before handoff.</p>
           </div>
@@ -78,7 +116,7 @@
         <article class="vertical-card-simple reveal">
           <div class="card-art"><img src="assets/merchant.jpg" alt="The Merchant" /></div>
           <div class="card-body">
-            <span class="card-eyebrow">RETAIL · STORES · BRANDS</span>
+            <span class="card-eyebrow">02 / 04 — RETAIL · STORES · BRANDS</span>
             <h3>The Merchant</h3>
             <p>Answers product questions, takes orders, checks stock, and follows up automatically.</p>
           </div>
@@ -86,7 +124,7 @@
         <article class="vertical-card-simple reveal">
           <div class="card-art"><img src="assets/harlequin.jpg" alt="The Harlequin" /></div>
           <div class="card-body">
-            <span class="card-eyebrow">BOOKINGS · SUPPORT · OPERATIONS</span>
+            <span class="card-eyebrow">03 / 04 — BOOKINGS · SUPPORT · OPERATIONS</span>
             <h3>The Harlequin</h3>
             <p>Captures bookings, answers timing questions, and routes anything complex to a person.</p>
           </div>
@@ -94,7 +132,7 @@
         <article class="vertical-card-simple reveal">
           <div class="card-art"><img src="assets/shared-city.jpg" alt="The Shared City" /></div>
           <div class="card-body">
-            <span class="card-eyebrow">COMMUNITIES · ASSOCIATIONS · BEYOND</span>
+            <span class="card-eyebrow">04 / 04 — COMMUNITIES · ASSOCIATIONS · BEYOND</span>
             <h3>The Shared City</h3>
             <p>Shares announcements, answers recurring member questions, and points people to the right contact.</p>
           </div>
@@ -102,37 +140,32 @@
       </div>
     </section>
 
-    <section id="how" class="how section-pad">
-      <div class="section-heading reveal"><p class="eyebrow">THREE STEPS</p><h2>From your business to your WhatsApp.</h2></div>
-      <div class="steps">
-        <article class="step reveal"><span class="step-no">01</span><p class="eyebrow">DESCRIBE IT</p><h3>Tell us about your business.</h3><p>A sentence or two, same as you'd tell a new customer — what you do, where you are.</p></article>
-        <article class="step reveal"><span class="step-no">02</span><p class="eyebrow">WE BUILD IT</p><h3>It's registered in seconds.</h3><p>A real WhatsApp assistant, live and answering — no forms, no setup call, no waiting.</p></article>
-        <article class="step reveal"><span class="step-no">03</span><p class="eyebrow">TRY IT</p><h3>Message it yourself.</h3><p>Message the number we give you and watch your own business answer you back.</p></article>
-      </div>
-    </section>
-
     <section id="faq" class="faq section-pad">
-      <div class="section-heading reveal"><p class="eyebrow">QUESTIONS, ANSWERED</p><h2>Frequently asked.</h2></div>
+      <div class="section-heading reveal"><p class="eyebrow">VERTICALS / 005 · FAQ</p><h2>Frequently asked.</h2></div>
       <div class="faq-list">
-        <details open><summary>Is this a chatbot?<span>+</span></summary><p>It's an AI assistant shaped around your business — built to take useful action, not just chat.</p></details>
-        <details><summary>Do I need a technical team?<span>+</span></summary><p>No. We handle the setup; you bring the knowledge of your business.</p></details>
-        <details><summary>What happens when it can't answer?<span>+</span></summary><p>It asks for clarification or hands the conversation to a person, instead of guessing.</p></details>
-        <details><summary>Is the "try it live" demo a real assistant?<span>+</span></summary><p>Yes — it's registered for real and answers on real WhatsApp, just scoped to one hour so a live demo doesn't stick around forever. A real deployment for your business doesn't expire.</p></details>
+        <details open><summary><span>01</span>Is this a chatbot?<span class="toggle">+</span></summary><p>No — it's software you run and own. Underneath the WhatsApp conversation, it's also orchestrating the flow you defined and analysing the business, not just chatting.</p></details>
+        <details><summary><span>02</span>Do I need a technical team?<span class="toggle">+</span></summary><p>No. Verticals installs on your own machine with no code — you describe your business and your rules in plain English, that's it.</p></details>
+        <details><summary><span>03</span>What happens when it can't answer?<span class="toggle">+</span></summary><p>It asks for clarification or hands the conversation to a person, instead of guessing.</p></details>
+        <details><summary><span>04</span>Is the "try it live" demo a real assistant?<span class="toggle">+</span></summary><p>Yes — it's registered for real and answers on real WhatsApp, just scoped to one hour so a live demo doesn't stick around forever. A real deployment for your business doesn't expire.</p></details>
       </div>
     </section>
 
     <section id="contact" class="contact section-pad reveal">
       <div class="contact-inner">
-        <p class="eyebrow">GET STARTED</p>
-        <h2>Give your business<br><em>an answer.</em></h2>
+        <p class="eyebrow">VERTICALS / 006 · GET STARTED</p>
+        <h2>Give your business<br>an answer.</h2>
         <p>Tell us what your business does. We'll show you what your assistant could do.</p>
-        <a class="button gold big" href="mailto:adiayanandai@gmail.com?subject=I%20want%20a%20Verticals%20assistant">START A CONVERSATION <span>→</span></a>
-        <div class="contact-meta"><span>VERTICALS</span><span>POWERED BY ADIYAN</span><span>© 2026</span></div>
+        <a class="button invert" href="mailto:adiayanandai@gmail.com?subject=I%20want%20a%20Verticals%20assistant">START A CONVERSATION <span>→</span></a>
       </div>
     </section>
   </main>
 
-  <footer><span>VERTICALS</span><span>AI WORKS FOR THE PEOPLE</span><a href="#top">BACK TO TOP ↑</a></footer>
+  <footer class="sys-bottom">
+    <div class="status"><i class="status-dot"></i> SYSTEM ONLINE</div>
+    <div>LOCAL · PRIVATE · AUTONOMOUS</div>
+    <div id="sysClock">00:00:00</div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>

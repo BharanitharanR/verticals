@@ -4,25 +4,12 @@ const observer = new IntersectionObserver(entries => entries.forEach(e => {
 }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// custom cursor
-const cursor = document.querySelector('#cursorDot');
-if (cursor) {
-  window.addEventListener('pointermove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-  document.querySelectorAll('a,button,textarea,.vertical-card-simple,summary').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '30px';
-      cursor.style.height = '30px';
-      cursor.style.background = 'rgba(240,230,220,.08)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '10px';
-      cursor.style.height = '10px';
-      cursor.style.background = 'transparent';
-    });
-  });
+// system-bar live clock, echoing the reference interface's own timestamp
+const clockEl = document.querySelector('#sysClock');
+if (clockEl) {
+  const tick = () => { clockEl.textContent = new Date().toLocaleTimeString('en-GB'); };
+  tick();
+  setInterval(tick, 1000);
 }
 
 // live "build my assistant" demo — talks to Adiyan's own backend
@@ -81,7 +68,7 @@ function showResult(data) {
     <p class="demo-result-title">“${data.business_name}” is live.</p>
     <p>Say <strong>“${data.summon_phrase}”</strong> to reach it — just tap below.</p>
     <div class="demo-result-actions">
-      <a class="button crimson" href="${link}" target="_blank" rel="noopener">MESSAGE IT ON WHATSAPP <span>→</span></a>
+      <a class="button" href="${link}" target="_blank" rel="noopener">MESSAGE IT ON WHATSAPP <span>→</span></a>
       <button type="button" class="text-link" id="demoPdfLink">Download the config (PDF) ↓</button>
     </div>
     <p class="demo-result-note">This demo deactivates automatically in about an hour.</p>
