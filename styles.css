@@ -66,13 +66,15 @@ main,header,footer{position:relative;z-index:1}
 /* onboarding — video walkthrough grid */
 .onboarding{padding-top:100px;padding-bottom:70px;border-bottom:1px solid var(--line-strong)}
 .onboarding .section-intro p:last-child{max-width:600px}
-.video-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line-strong)}
-.video-card{display:block;border-right:1px solid var(--line-strong);padding:22px 20px 24px;color:var(--ink);transition:.15s}
-.video-card:last-child{border-right:0}
-.video-card:hover{background:var(--paper2)}
-.video-card h3{font:700 19px "Space Grotesk",sans-serif;margin:10px 0 8px}
-.video-card p{margin:0;color:var(--ink-soft);font-size:13px;line-height:1.6}
-.video-link{display:block;margin-top:16px;font:600 10.5px "IBM Plex Mono",monospace;letter-spacing:.06em}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line-strong)}
+.video-card{border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:0 0 22px;color:var(--ink)}
+.video-card:nth-child(2n){border-right:0}
+.video-card:nth-last-child(-n+2){border-bottom:0}
+.video-embed{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--ink);margin-bottom:18px}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-card .card-eyebrow{display:block;margin:0 20px 6px}
+.video-card h3{font:700 19px "Space Grotesk",sans-serif;margin:0 20px 8px}
+.video-card p{margin:0 20px;color:var(--ink-soft);font-size:13px;line-height:1.6}
 .onboarding-credit{margin:28px 0 0;color:var(--ink-soft);font-size:13px;line-height:1.6}
 .onboarding-credit a{color:var(--ink);border-bottom:1px solid var(--line-strong)}
 .onboarding-credit a:hover{border-color:var(--ink)}
@@ -85,8 +87,18 @@ main,header,footer{position:relative;z-index:1}
 .verticals-grid-simple{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line-strong)}
 .vertical-card-simple{border-right:1px solid var(--line-strong);display:flex;flex-direction:column}
 .vertical-card-simple:last-child{border-right:0}
-.card-art{aspect-ratio:4/3;overflow:hidden;filter:grayscale(1) contrast(1.05)}
-.card-art img{width:100%;height:100%;object-fit:cover}
+/* color-on-hover: .art-base is always grayscale; .art-color sits on top,
+   masked to a band that follows the cursor's horizontal position (full
+   color at the cursor, fading to transparent - i.e. back to the grayscale
+   layer beneath - toward whichever side is farther away), and its opacity
+   fades the whole effect in/out on enter/leave. --mx is set by script.js. */
+.card-art{position:relative;aspect-ratio:4/3;overflow:hidden}
+.card-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.art-base{filter:grayscale(1) contrast(1.05)}
+.art-color{opacity:0;transition:opacity .35s ease;
+  -webkit-mask-image:radial-gradient(ellipse 280px 100% at var(--mx,50%) 50%,#000 0%,transparent 100%);
+  mask-image:radial-gradient(ellipse 280px 100% at var(--mx,50%) 50%,#000 0%,transparent 100%)}
+.card-art:hover .art-color{opacity:1}
 .card-body{padding:20px 18px 24px;flex:1;display:flex;flex-direction:column;gap:8px}
 .card-eyebrow{font:500 9.5px "IBM Plex Mono",monospace;letter-spacing:.04em;color:var(--ink-soft)}
 .card-body h3{font:700 22px "Space Grotesk",sans-serif;margin:0}
@@ -148,8 +160,6 @@ footer.sys-bottom{display:flex;justify-content:space-between;align-items:center;
   .hero-demo{margin-top:20px;padding:22px 20px}
   .verticals-grid-simple{grid-template-columns:1fr 1fr}
   .vertical-card-simple:nth-child(2){border-right:0}
-  .video-grid{grid-template-columns:1fr 1fr}
-  .video-card:nth-child(2){border-right:0}
   .steps{grid-template-columns:1fr}
   .step{border-right:0;border-bottom:1px solid var(--line-strong)}
   .step:last-child{border-bottom:0}
@@ -163,7 +173,8 @@ footer.sys-bottom{display:flex;justify-content:space-between;align-items:center;
   .vertical-card-simple{border-right:0;border-bottom:1px solid var(--line-strong)}
   .vertical-card-simple:last-child{border-bottom:0}
   .video-grid{grid-template-columns:1fr}
-  .video-card{border-right:0;border-bottom:1px solid var(--line-strong)}
+  .video-card{border-right:0}
+  .video-card:nth-last-child(-n+2){border-bottom:1px solid var(--line-strong)}
   .video-card:last-child{border-bottom:0}
   .demo-result-actions{flex-direction:column;align-items:flex-start}
   .contact h2{font-size:34px}

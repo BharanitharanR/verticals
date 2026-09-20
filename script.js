@@ -4,6 +4,17 @@ const observer = new IntersectionObserver(entries => entries.forEach(e => {
 }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// vertical-card artwork: color follows the cursor's horizontal position
+// (see .art-color's mask-image in styles.css) - plain mousemove/leave, no
+// library, since it's just one CSS custom property per card.
+document.querySelectorAll('.card-art').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const pct = ((e.clientX - rect.left) / rect.width) * 100;
+    card.style.setProperty('--mx', `${pct}%`);
+  });
+});
+
 // system-bar live clock, echoing the reference interface's own timestamp
 const clockEl = document.querySelector('#sysClock');
 if (clockEl) {
