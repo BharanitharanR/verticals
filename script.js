@@ -33,6 +33,13 @@ if (cursor) {
 // whenever it does.
 const API_BASE = 'https://exciting-shock-unvented.ngrok-free.dev';
 
+// Confirmed live: ngrok's own free-tier tunnels serve an interstitial HTML
+// "you're about to visit..." warning page (ERR_NGROK_6024) in place of the
+// real response when a request looks like it came from a browser - this is
+// ngrok's documented bypass, required on every request through the tunnel
+// or a real visitor's fetch() gets HTML back where JSON was expected.
+const API_HEADERS = { 'ngrok-skip-browser-warning': 'true' };
+
 const demoForm = document.querySelector('#demoForm');
 const demoInput = document.querySelector('#demoInput');
 const demoSubmit = document.querySelector('#demoSubmit');
@@ -44,6 +51,27 @@ function waLink(phone, text) {
   return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
 }
 
+// A plain <a href> to the PDF can't carry API_HEADERS (a real page
+// navigation, not fetch) - it would hit the exact same ngrok interstitial
+// the polling fix above works around. Fetched as a blob instead, so the
+// bypass header applies here too.
+async function downloadPdf(url, filename) {
+  try {
+    const res = await fetch(url, { headers: API_HEADERS });
+    const blob = await res.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(blobUrl);
+  } catch (err) {
+    showError("Couldn't download the config right now — try again in a moment.");
+  }
+}
+
 function showResult(data) {
   demoError.hidden = true;
   const link = waLink(data.whatsapp_number, data.summon_phrase);
@@ -52,11 +80,14 @@ function showResult(data) {
     <p>Message <strong>${data.whatsapp_number}</strong> and say <strong>“${data.summon_phrase}”</strong> — or just tap below.</p>
     <div class="demo-result-actions">
       <a class="button crimson" href="${link}" target="_blank" rel="noopener">MESSAGE IT ON WHATSAPP <span>→</span></a>
-      <a class="text-link" href="${API_BASE}${data.pdf_url}" target="_blank" rel="noopener">Download the config (PDF) ↓</a>
+      <button type="button" class="text-link" id="demoPdfLink">Download the config (PDF) ↓</button>
     </div>
     <p class="demo-result-note">This demo deactivates automatically in about an hour.</p>
   `;
   demoResult.hidden = false;
+  document.querySelector('#demoPdfLink').addEventListener('click', () => {
+    downloadPdf(`${API_BASE}${data.pdf_url}`, `${data.vertical_id}.pdf`);
+  });
 }
 
 function showError(message) {
@@ -90,16 +121,18 @@ async function pollJob(jobId) {
   const deadline = Date.now() + POLL_TIMEOUT_MS;
   while (Date.now() < deadline) {
     await sleep(POLL_INTERVAL_MS);
+    let data;
     try {
-      const res = await fetch(`${API_BASE}/verticals/status/${jobId}`);
-      const data = await res.json();
-      if (data.status === 'done') return data.result;
-      if (data.status === 'not_found') throw new Error('job not found');
-      // 'pending' — keep polling
+      const res = await fetch(`${API_BASE}/verticals/status/${jobId}`, { headers: API_HEADERS });
+      data = await res.json();
     } catch (err) {
       // A single dropped poll on a flaky connection isn't fatal — the
       // background job keeps running regardless; just try again.
+      continue;
     }
+    if (data.status === 'done') return data.result;
+    if (data.status === 'not_found') throw new Error('job not found');
+    // 'pending' — keep polling
   }
   throw new Error('timed out waiting for a result');
 }
@@ -124,7 +157,7 @@ if (demoForm) {
     try {
       const startRes = await fetch(`${API_BASE}/verticals/register`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...API_HEADERS },
         body: JSON.stringify({ description }),
       });
       const started = await startRes.json();
