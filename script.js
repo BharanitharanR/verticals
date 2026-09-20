@@ -74,10 +74,12 @@ async function downloadPdf(url, filename) {
 
 function showResult(data) {
   demoError.hidden = true;
+  // whatsapp_number is used to build the wa.me link only - never rendered
+  // as visible text on the page.
   const link = waLink(data.whatsapp_number, data.summon_phrase);
   demoResult.innerHTML = `
     <p class="demo-result-title">“${data.business_name}” is live.</p>
-    <p>Message <strong>${data.whatsapp_number}</strong> and say <strong>“${data.summon_phrase}”</strong> — or just tap below.</p>
+    <p>Say <strong>“${data.summon_phrase}”</strong> to reach it — just tap below.</p>
     <div class="demo-result-actions">
       <a class="button crimson" href="${link}" target="_blank" rel="noopener">MESSAGE IT ON WHATSAPP <span>→</span></a>
       <button type="button" class="text-link" id="demoPdfLink">Download the config (PDF) ↓</button>
