@@ -11,7 +11,7 @@ if (cursor) {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
   });
-  document.querySelectorAll('a,button,.vertical-card-simple,summary').forEach(el => {
+  document.querySelectorAll('a,button,textarea,.vertical-card-simple,summary').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.style.width = '30px';
       cursor.style.height = '30px';
@@ -25,53 +25,93 @@ if (cursor) {
   });
 }
 
-// live chat demo
-const RULES = [
-  { test: /open|hour/i, reply: "Yes, we're open until 9 tonight. What can I help you with?" },
-  { test: /price|cost|how much/i, reply: 'For 20 units, the price is ₹4,200. Want me to reserve them for you?' },
-  { test: /book|appointment|schedule/i, reply: 'I can book that for you — what date and time works best?' },
-  { test: /thank/i, reply: "You're welcome! Anything else I can help with?" },
-  { test: /hi|hello|hey/i, reply: 'Hey! Welcome — how can I help you today?' },
+// live "build my assistant" demo — talks to Adiyan's own backend
+// (mesh/mcp/whatsapp/verticals_demo.py), reachable through the same ngrok
+// tunnel already exposing its WhatsApp webhook. NOTE: this is a free-tier
+// ngrok URL, not a reserved domain — it changes if that tunnel restarts,
+// and this constant has to be updated (and the site republished) to match
+// whenever it does.
+const API_BASE = 'https://exciting-shock-unvented.ngrok-free.dev';
+
+const demoForm = document.querySelector('#demoForm');
+const demoInput = document.querySelector('#demoInput');
+const demoSubmit = document.querySelector('#demoSubmit');
+const demoResult = document.querySelector('#demoResult');
+const demoError = document.querySelector('#demoError');
+
+function waLink(phone, text) {
+  const digits = (phone || '').replace(/[^0-9]/g, '');
+  return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
+}
+
+function showResult(data) {
+  demoError.hidden = true;
+  const link = waLink(data.whatsapp_number, data.summon_phrase);
+  demoResult.innerHTML = `
+    <p class="demo-result-title">“${data.business_name}” is live.</p>
+    <p>Message <strong>${data.whatsapp_number}</strong> and say <strong>“${data.summon_phrase}”</strong> — or just tap below.</p>
+    <div class="demo-result-actions">
+      <a class="button crimson" href="${link}" target="_blank" rel="noopener">MESSAGE IT ON WHATSAPP <span>→</span></a>
+      <a class="text-link" href="${API_BASE}${data.pdf_url}" target="_blank" rel="noopener">Download the config (PDF) ↓</a>
+    </div>
+    <p class="demo-result-note">This demo deactivates automatically in about an hour.</p>
+  `;
+  demoResult.hidden = false;
+}
+
+function showError(message) {
+  demoResult.hidden = true;
+  demoError.textContent = message;
+  demoError.hidden = false;
+}
+
+// Confirmed live: end to end (reading the description, writing the config,
+// and — when the description implies one — creating and activating a real
+// n8n workflow) can take up to ~100 seconds on ordinary hardware. A single
+// static "BUILDING…" label that long reads as broken, so this rotates
+// through a few honest progress messages instead of pretending it's instant.
+const BUILD_STAGES = [
+  'READING YOUR BUSINESS…',
+  'WRITING YOUR ASSISTANT…',
+  'SETTING UP WHATSAPP…',
+  'ALMOST THERE…',
 ];
-const FALLBACK = "Got it — let me check on that and get right back to you.";
 
-function botReplyFor(text) {
-  const rule = RULES.find(r => r.test.test(text));
-  return rule ? rule.reply : FALLBACK;
-}
-
-const chatMessages = document.querySelector('#chatMessages');
-const chatForm = document.querySelector('#chatForm');
-const chatInput = document.querySelector('#chatInput');
-
-function appendChat(text, who) {
-  const div = document.createElement('div');
-  div.className = `chat ${who}`;
-  div.textContent = text;
-  chatMessages.appendChild(div);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-  return div;
-}
-
-function sendUserMessage(text) {
-  if (!text.trim()) return;
-  appendChat(text, 'user');
-  const typing = appendChat('typing…', 'bot typing');
-  setTimeout(() => {
-    typing.textContent = botReplyFor(text);
-    typing.classList.remove('typing');
-  }, 650);
-}
-
-if (chatForm) {
-  chatForm.addEventListener('submit', e => {
+if (demoForm) {
+  demoForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const text = chatInput.value;
-    chatInput.value = '';
-    sendUserMessage(text);
+    const description = demoInput.value.trim();
+    if (!description) return;
+
+    demoSubmit.disabled = true;
+    demoResult.hidden = true;
+    demoError.hidden = true;
+
+    let stage = 0;
+    demoSubmit.textContent = BUILD_STAGES[0];
+    const stageTimer = setInterval(() => {
+      stage = Math.min(stage + 1, BUILD_STAGES.length - 1);
+      demoSubmit.textContent = BUILD_STAGES[stage];
+    }, 12000);
+
+    try {
+      const res = await fetch(`${API_BASE}/verticals/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ description }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        showResult(data);
+      } else {
+        showError(data.error || "Couldn't build that right now — try again in a moment.");
+      }
+    } catch (err) {
+      showError("Couldn't reach the demo right now — try again in a moment.");
+    } finally {
+      clearInterval(stageTimer);
+      demoSubmit.disabled = false;
+      demoSubmit.innerHTML = 'BUILD MY ASSISTANT <span>→</span>';
+    }
   });
 }
-
-document.querySelectorAll('.chip').forEach(chip => {
-  chip.addEventListener('click', () => sendUserMessage(chip.dataset.msg));
-});

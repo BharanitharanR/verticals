@@ -22,26 +22,33 @@
     </a>
     <nav>
       <a href="#businesses">BUSINESSES</a>
-      <a href="#demo">TRY IT</a>
+      <a href="#demo">TRY IT LIVE</a>
       <a href="#how">HOW IT WORKS</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="header-cta" href="#contact">GET YOUR ASSISTANT <span>→</span></a>
+    <a class="header-cta" href="#demo">GET YOUR ASSISTANT <span>→</span></a>
     <span class="powered">powered by Adiyan</span>
   </header>
 
   <main id="top">
-    <section class="hero section-pad">
+    <section class="hero section-pad" id="demo">
       <div class="hero-copy reveal">
-        <p class="eyebrow">A SMALL BUSINESS MACHINE · 001</p>
+        <p class="eyebrow">WHAT IS VERTICALS?</p>
         <h1>Your business, <em>answered</em> on WhatsApp.</h1>
-        <p class="hero-lede">An AI assistant built around your business — trained on your offers, prices and policies, and ready whenever a customer messages you.</p>
-        <div class="hero-actions">
-          <a class="button gold big" href="#demo">SEE IT IN ACTION <span>→</span></a>
-        </div>
+        <p class="hero-lede">Verticals gives your business its own AI assistant on WhatsApp — trained on what you tell it, answering your customers for you, day or night.</p>
       </div>
-      <div class="hero-art reveal delayed">
-        <img src="assets/dreaming-host.jpg" alt="Cubist Dreaming Host illustration" />
+
+      <div class="hero-demo reveal delayed" id="verticalsDemo">
+        <p class="eyebrow">TRY IT — AS YOUR OWN CUSTOMER</p>
+        <h2>Describe your business. We'll build it live.</h2>
+        <p class="demo-instructions">Write a sentence or two the way you'd explain it to a new customer — what you do, where you are, what people can ask for.</p>
+        <form id="demoForm">
+          <textarea id="demoInput" maxlength="600" rows="4" placeholder="e.g. We run a bakery in Chennai called Sweet Crumbs, selling cakes and pastries, open 9am to 8pm." required></textarea>
+          <button type="submit" class="button gold big" id="demoSubmit">BUILD MY ASSISTANT <span>→</span></button>
+        </form>
+        <p class="demo-note">A real, working assistant — live for one hour so you can try it yourself, no signup needed. Takes up to a minute to build.</p>
+        <div class="demo-result" id="demoResult" hidden></div>
+        <p class="demo-error" id="demoError" hidden></p>
       </div>
     </section>
 
@@ -88,35 +95,12 @@
       </div>
     </section>
 
-    <section id="demo" class="demo section-pad">
-      <div class="section-heading reveal">
-        <p class="eyebrow">TRY IT YOURSELF</p>
-        <h2>Ask it something.</h2>
-        <p>A live demo of a Verticals assistant for a small retail shop.</p>
-      </div>
-      <div class="assistant-window reveal">
-        <div class="assistant-head"><span class="status-dot"></span> VERTICALS · ONLINE</div>
-        <div class="chat-messages" id="chatMessages">
-          <div class="chat bot">Hey! Welcome — how can I help you today?</div>
-        </div>
-        <div class="chat-chips">
-          <button type="button" class="chip" data-msg="Are you open today?">Are you open today?</button>
-          <button type="button" class="chip" data-msg="What's the price for 20?">What's the price for 20?</button>
-          <button type="button" class="chip" data-msg="Can I book an appointment?">Can I book an appointment?</button>
-        </div>
-        <form class="chat-input-row" id="chatForm">
-          <input type="text" class="chat-input" id="chatInput" placeholder="Type a message…" autocomplete="off" />
-          <button type="submit" class="chat-send">Send</button>
-        </form>
-      </div>
-    </section>
-
     <section id="how" class="how section-pad">
       <div class="section-heading reveal"><p class="eyebrow">THREE STEPS</p><h2>From your business to your WhatsApp.</h2></div>
       <div class="steps">
-        <article class="step reveal"><span class="step-no">01</span><p class="eyebrow">TELL US</p><h3>Tell us about your business.</h3><p>What you sell, your hours, and the questions customers ask most.</p></article>
-        <article class="step reveal"><span class="step-no">02</span><p class="eyebrow">WE BUILD</p><h3>We build your assistant.</h3><p>Your offers, prices and policies become its working knowledge — no software project required.</p></article>
-        <article class="step reveal"><span class="step-no">03</span><p class="eyebrow">IT ANSWERS</p><h3>It answers your customers.</h3><p>It responds on WhatsApp and brings you the moments that need a person.</p></article>
+        <article class="step reveal"><span class="step-no">01</span><p class="eyebrow">DESCRIBE IT</p><h3>Tell us about your business.</h3><p>A sentence or two, same as you'd tell a new customer — what you do, where you are.</p></article>
+        <article class="step reveal"><span class="step-no">02</span><p class="eyebrow">WE BUILD IT</p><h3>It's registered in seconds.</h3><p>A real WhatsApp assistant, live and answering — no forms, no setup call, no waiting.</p></article>
+        <article class="step reveal"><span class="step-no">03</span><p class="eyebrow">TRY IT</p><h3>Message it yourself.</h3><p>Message the number we give you and watch your own business answer you back.</p></article>
       </div>
     </section>
 
@@ -126,6 +110,7 @@
         <details open><summary>Is this a chatbot?<span>+</span></summary><p>It's an AI assistant shaped around your business — built to take useful action, not just chat.</p></details>
         <details><summary>Do I need a technical team?<span>+</span></summary><p>No. We handle the setup; you bring the knowledge of your business.</p></details>
         <details><summary>What happens when it can't answer?<span>+</span></summary><p>It asks for clarification or hands the conversation to a person, instead of guessing.</p></details>
+        <details><summary>Is the "try it live" demo a real assistant?<span>+</span></summary><p>Yes — it's registered for real and answers on real WhatsApp, just scoped to one hour so a live demo doesn't stick around forever. A real deployment for your business doesn't expire.</p></details>
       </div>
     </section>
 
