@@ -48,7 +48,10 @@ button{font:inherit}
 /* hero live-demo — the actual centerpiece */
 .hero-demo{background:var(--wine2);border:1px solid var(--line);border-radius:6px;padding:34px 32px;box-shadow:18px 18px 0 rgba(8,6,9,.25)}
 .hero-demo h2{font:500 clamp(26px,2.6vw,34px)/1.15 "Playfair Display",serif;margin:12px 0 10px}
-.demo-instructions{color:var(--muted);font-size:13.5px;line-height:1.6;margin:0 0 20px}
+.demo-instructions{color:var(--muted);font-size:13.5px;line-height:1.6;margin:0 0 12px}
+.demo-checklist{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:8px}
+.demo-checklist li{color:var(--cream);font-size:13px;line-height:1.4;padding-left:20px;position:relative}
+.demo-checklist li:before{content:'✦';position:absolute;left:0;top:0;color:var(--gold);font-size:11px}
 #demoForm textarea{width:100%;background:#1d1117;border:1px solid #3a2731;color:var(--cream);padding:14px;font:14px/1.5 Mulish;border-radius:3px;resize:vertical;cursor:auto}
 #demoForm textarea:focus{outline:none;border-color:var(--gold)}
 #demoForm .button{width:100%;margin-top:14px}
