@@ -16,7 +16,9 @@ main,header,footer{position:relative;z-index:1}
 
 /* header */
 .site-header{position:fixed;top:0;left:0;right:0;height:70px;z-index:100;background:var(--paper);border-bottom:1px solid var(--line-strong);display:flex;align-items:center;padding:0 4vw;gap:3vw}
-.brand{display:flex;flex-direction:column;line-height:1.1}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:34px;height:34px;object-fit:cover;border-radius:2px}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
 .brand-name{font:700 20px "Space Grotesk",sans-serif;letter-spacing:-.02em}
 .brand-sub,.eyebrow{font:500 10px "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase}
 .brand-sub{margin-top:4px;color:var(--ink-soft)}
