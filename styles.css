@@ -1,6 +1,10 @@
 :root{
   --paper:#f4f4f0; --paper2:#eae9e3; --ink:#111111; --ink-soft:rgba(17,17,17,.62);
   --line:rgba(17,17,17,.16); --line-strong:rgba(17,17,17,.4);
+  /* Extracted from assets/verticals-icon-color.png via k-means quantization -
+     the actual red/blue/ochre/cream the mark itself is painted in, not a
+     picked-by-eye palette. Used only for the live-demo READY dot's blink. */
+  --p1:#bf1d1a; --p2:#0a306e; --p3:#cb9036; --p4:#efd5ac;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -35,6 +39,16 @@ main,header,footer{position:relative;z-index:1}
 
 .status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ink);animation:pulse 2.4s infinite}
 @keyframes pulse{0%{opacity:1}50%{opacity:.25}100%{opacity:1}}
+
+/* Live-demo READY dot only - cycles through the logo's own palette instead
+   of the plain pulse every other status-dot uses. Grays out and pauses the
+   instant the visitor starts typing (see #verticalsDemo.interacting below,
+   toggled from script.js's demoInput focus/blur listeners), so the color
+   never competes with someone trying to read what they just wrote. */
+.status-dot.disco{animation:disco-blink 5s steps(1,end) infinite,disco-pulse 5s linear infinite;transition:filter .4s}
+@keyframes disco-blink{0%{background:var(--p1)}25%{background:var(--p2)}50%{background:var(--p3)}75%{background:var(--p4)}100%{background:var(--p1)}}
+@keyframes disco-pulse{0%,100%{box-shadow:0 0 8px 2px var(--p1)}25%{box-shadow:0 0 8px 2px var(--p2)}50%{box-shadow:0 0 8px 2px var(--p3)}75%{box-shadow:0 0 8px 2px var(--p4)}}
+#verticalsDemo.interacting .status-dot.disco{animation-play-state:paused;filter:grayscale(1) brightness(1.15)}
 
 .section-pad{padding-left:6vw;padding-right:6vw}
 

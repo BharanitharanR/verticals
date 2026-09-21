@@ -54,9 +54,20 @@ const API_HEADERS = { 'ngrok-skip-browser-warning': 'true' };
 
 const demoForm = document.querySelector('#demoForm');
 const demoInput = document.querySelector('#demoInput');
+const verticalsDemo = document.querySelector('#verticalsDemo');
 const demoSubmit = document.querySelector('#demoSubmit');
 const demoResult = document.querySelector('#demoResult');
 const demoError = document.querySelector('#demoError');
+
+// READY dot's colorful blink (styles.css's .status-dot.disco) grays out and
+// freezes the moment a visitor actually starts writing their description -
+// see #verticalsDemo.interacting there - so it never competes with someone
+// trying to read what they just typed. Real focus/blur, not tied to the
+// build flow itself.
+if (verticalsDemo && demoInput) {
+  demoInput.addEventListener('focus', () => verticalsDemo.classList.add('interacting'));
+  demoInput.addEventListener('blur', () => verticalsDemo.classList.remove('interacting'));
+}
 
 function waLink(phone, text) {
   const digits = (phone || '').replace(/[^0-9]/g, '');
