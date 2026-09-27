@@ -16,14 +16,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .sky-hero{padding-top:70px;background:var(--ink)}
-    .sky-hero-art{position:relative;width:100%;max-height:82vh;overflow:hidden;display:flex;justify-content:center}
-    .sky-hero-art img{width:auto;height:auto;max-width:100%;max-height:82vh;display:block}
-    .sky-hero-art .placeholder{color:var(--paper);opacity:.5;font:500 11px "IBM Plex Mono",monospace;letter-spacing:.08em;text-align:center;padding:120px 40px}
+    .sky-hero{padding:150px 6vw 70px;background:var(--paper);display:grid;grid-template-columns:0.9fr 1.1fr;gap:5vw;align-items:center;border-bottom:1px solid var(--line-strong)}
+    .sky-hero-art{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -20px rgba(17,17,17,.35)}
+    .sky-hero-art img{width:100%;height:100%;object-fit:cover;display:block}
+    .sky-hero-art .placeholder{background:var(--ink);color:var(--paper);opacity:.5;font:500 11px "IBM Plex Mono",monospace;letter-spacing:.08em;text-align:center;padding:160px 30px}
 
-    .sky-intro{padding:56px 6vw 10px;max-width:720px}
     .sky-intro .eyebrow{margin-bottom:14px}
-    .sky-intro p{color:var(--ink-soft);font-size:15.5px;line-height:1.7;margin:0 0 24px}
+    .sky-intro h1{font:700 clamp(30px,3.4vw,46px)/1.08 "Space Grotesk",sans-serif;letter-spacing:-.03em;margin:0 0 16px}
+    .sky-intro p{color:var(--ink-soft);font-size:15.5px;line-height:1.7;margin:0 0 18px;max-width:480px}
+    .sky-intro .sky-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+    .sky-intro .sky-tags span{font:600 9.5px "IBM Plex Mono",monospace;letter-spacing:.06em;padding:5px 10px;border:1px solid var(--line-strong)}
+
+    @media(max-width:860px){
+      .sky-hero{grid-template-columns:1fr;padding-top:120px}
+      .sky-hero-art{order:-1}
+    }
 
     .sky-grid{padding:60px 6vw 90px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
     .sky-card{border:1px solid var(--line-strong);background:var(--paper2);display:flex;flex-direction:column}
@@ -79,15 +86,18 @@
 
   <main id="top">
     <section class="sky-hero">
+      <div class="sky-intro">
+        <p class="eyebrow">VERTICALS / 003 · SKYSCRAPERS</p>
+        <h1>The marketplace of <span class="hl">Verticals.</span></h1>
+        <p>Every business persona a Verticals builder has made, in one place - a city of them, each tower its own kind of assistant. Tune into one on your own WhatsApp for free, or take its spec home and install it on yours. Every listing is a real, working assistant, not a mockup.</p>
+        <div class="sky-tags">
+          <span>READING</span><span>DINING</span><span>FITNESS</span><span>TRAVEL</span><span>RETAIL</span><span>+ MORE</span>
+        </div>
+        <a class="button" href="#publish">PUBLISH YOUR OWN →</a>
+      </div>
       <div class="sky-hero-art">
         <img src="assets/skyscrapers-hero.jpg" alt="Skyscrapers - the marketplace of Verticals: an illustrated cliffside city of towers, each one a different business category, connected by bridges and stairways." />
       </div>
-    </section>
-
-    <section class="sky-intro">
-      <p class="eyebrow">VERTICALS / 003 · SKYSCRAPERS</p>
-      <p>Skyscrapers is where Verticals builders share what they've made - free or paid, ready for anyone to tune into on WhatsApp, or take home and install on their own number. Every listing here is a real, working assistant, not a mockup.</p>
-      <a class="button" href="#publish">PUBLISH YOUR OWN →</a>
     </section>
 
     <section id="listings">
