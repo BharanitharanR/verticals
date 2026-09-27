@@ -11,7 +11,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // element), so a tap toggles a .touch-active class instead - styles.css
 // triggers the same reveal from either. --mx defaults to center (50%) on
 // tap since there's no cursor position to read.
-document.querySelectorAll('.card-art, .brand-mark').forEach(card => {
+document.querySelectorAll('.card-art, .brand-mark, .sky-hero-art').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
     const pct = ((e.clientX - rect.left) / rect.width) * 100;

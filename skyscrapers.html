@@ -17,8 +17,10 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     .sky-hero{padding:150px 6vw 70px;background:var(--paper);display:grid;grid-template-columns:0.9fr 1.1fr;gap:5vw;align-items:center;border-bottom:1px solid var(--line-strong)}
-    .sky-hero-art{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -20px rgba(17,17,17,.35)}
-    .sky-hero-art img{width:100%;height:100%;object-fit:cover;display:block}
+    .sky-hero-art{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -20px rgba(17,17,17,.35);aspect-ratio:2/3}
+    .sky-hero-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .sky-hero-art .art-color{-webkit-mask-image:none;mask-image:none}
+    .sky-hero-art:hover .art-color,.sky-hero-art.touch-active .art-color{opacity:1}
     .sky-hero-art .placeholder{background:var(--ink);color:var(--paper);opacity:.5;font:500 11px "IBM Plex Mono",monospace;letter-spacing:.08em;text-align:center;padding:160px 30px}
 
     .sky-intro .eyebrow{margin-bottom:14px}
@@ -96,7 +98,8 @@
         <a class="button" href="#publish">PUBLISH YOUR OWN →</a>
       </div>
       <div class="sky-hero-art">
-        <img src="assets/skyscrapers-hero.jpg" alt="Skyscrapers - the marketplace of Verticals: an illustrated cliffside city of towers, each one a different business category, connected by bridges and stairways." />
+        <img class="art-base" src="assets/skyscrapers-hero.jpg" alt="Skyscrapers - the marketplace of Verticals: an illustrated cliffside city of towers, each one a different business category, connected by bridges and stairways." />
+        <img class="art-color" src="assets/skyscrapers-hero.jpg" alt="" aria-hidden="true" />
       </div>
     </section>
 
