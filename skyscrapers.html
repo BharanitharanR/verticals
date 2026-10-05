@@ -69,6 +69,14 @@
     .sky-card .card-builder a{color:var(--ink);border-bottom:1px solid var(--line-strong)}
     .sky-card .card-builder a:hover{border-color:var(--ink)}
 
+    .sky-card .dl-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+    .sky-card .dl-list li{border-bottom:1px solid var(--line)}
+    .sky-card .dl-list a{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:9px 2px;font:500 11px "IBM Plex Mono",monospace;letter-spacing:.03em;color:var(--ink)}
+    .sky-card .dl-list a:hover{background:var(--paper)}
+    .sky-card .dl-list a span{color:var(--ink-soft);font-size:10px;white-space:nowrap}
+    .info-modal code{font:500 11.5px "IBM Plex Mono",monospace;background:var(--paper2);border:1px solid var(--line);padding:1px 5px;word-break:break-all}
+    .info-modal ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font:400 13px/1.55 "IBM Plex Sans",sans-serif}
+
     .sky-publish{border-top:1px solid var(--line-strong);padding:60px 6vw;background:var(--paper2)}
     .sky-publish h2{font:700 clamp(24px,2.6vw,34px)/1.1 "Space Grotesk",sans-serif;margin:0 0 14px}
     .sky-publish p{max-width:640px;color:var(--ink-soft);font-size:14.5px;line-height:1.7;margin:0 0 20px}
@@ -110,7 +118,7 @@
         <h1>The marketplace of <span class="hl">Verticals.</span></h1>
         <p>Every business persona a Verticals builder has made, in one place - a city of them, each tower its own kind of assistant. Tune into one on your own WhatsApp for free, or take its spec home and install it on yours. Every listing is a real, working assistant, not a mockup.</p>
         <div class="sky-tags">
-          <span>READING</span><span>DINING</span><span>FITNESS</span><span>TRAVEL</span><span>RETAIL</span><span>+ MORE</span>
+          <span>READING</span><span>LEARNING</span><span>DINING</span><span>FITNESS</span><span>TRAVEL</span><span>RETAIL</span><span>+ MORE</span>
         </div>
         <a class="button" href="#publish">PUBLISH YOUR OWN →</a>
       </div>
@@ -143,10 +151,38 @@
             </div>
           </div>
         </article>
+
+        <article class="sky-card">
+          <div class="card-art"><img src="assets/daily-practice-icon.svg" alt="Pip the pencil and Ezzy the eraser, the Daily Practice characters" /></div>
+          <div class="card-body">
+            <div class="card-eyebrow">
+              <span class="eyebrow-left">
+                <span class="brand-sub">DAILY-PRACTICE</span>
+                <button class="info-btn" data-info-open="dp" aria-label="How to set up Daily Practice" type="button">i</button>
+              </span>
+              <span class="price-tag free">FREE</span>
+            </div>
+            <h3>Daily Practice</h3>
+            <p class="tagline">A daily maths and English sheet on your child's Android tablet, with Pip and Ezzy cheering them on. The Genie runs in your own Adiyan: hints that never give the answer, read-aloud checks, and a WhatsApp note to you when the sheet is done. Two AI skills write the sheets and review the results.</p>
+            <ul class="dl-list">
+              <li><a href="assets/downloads/daily-practice.apk" download>ANDROID APP <span>.APK · 190 KB</span></a></li>
+              <li><a href="assets/downloads/daily-practice-genie.zip" download>GENIE AGENT · ADIYAN PLUGIN <span>.ZIP · 26 KB</span></a></li>
+              <li><a href="assets/downloads/daily-practice-sheet.zip" download>SKILL · SHEET MAKER <span>.ZIP · 36 KB</span></a></li>
+              <li><a href="assets/downloads/daily-practice-review.zip" download>SKILL · RESULTS REVIEW <span>.ZIP · 21 KB</span></a></li>
+            </ul>
+            <div class="card-actions">
+              <a class="button" href="assets/downloads/daily-practice.apk" download>GET THE APP →</a>
+              <a class="coffee-link" href="https://buymeacoffee.com/bharani3raw" target="_blank" rel="noopener">☕ COFFEE</a>
+            </div>
+            <div class="card-builder">
+              BUILT BY <a href="https://github.com/BharanitharanR" target="_blank" rel="noopener">BHARANI</a> - made this for the family's after-school practice, then wired it into Adiyan so the help stays at home.
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <div class="info-overlay" id="infoOverlay">
+    <div class="info-overlay" id="info-abj">
       <div class="info-modal" role="dialog" aria-modal="true" aria-labelledby="infoAbjTitle">
         <div class="info-head">
           <h4 id="infoAbjTitle">Audio Book Junkie</h4>
@@ -162,6 +198,31 @@
           <li>@abj what books do you have</li>
         </ul>
         <p class="info-note">Any message to ABJ has to include "@abj" somewhere in it, or it won't respond - that's how it tells your message apart from everyone else's on the same WhatsApp number. If it doesn't already have a book you ask for, it checks Project Gutenberg for a public-domain copy before giving up.</p>
+      </div>
+    </div>
+
+    <div class="info-overlay" id="info-dp">
+      <div class="info-modal" role="dialog" aria-modal="true" aria-labelledby="infoDpTitle">
+        <div class="info-head">
+          <h4 id="infoDpTitle">Daily Practice</h4>
+          <button class="info-close" data-info-close aria-label="Close" type="button">×</button>
+        </div>
+        <p class="info-label">1 · THE APP</p>
+        <ol>
+          <li>Install the .apk on an Android tablet (allow installs from this source when asked).</li>
+          <li>Open <b>Grown-ups</b>, set a PIN, and point it at two GitHub repos you own: one for the daily sheets, one for the results.</li>
+        </ol>
+        <p class="info-label">2 · THE GENIE (OPTIONAL)</p>
+        <ol>
+          <li>Needs Adiyan running on your Mac. Unzip the plugin, then from the Adiyan folder:<br><code>.venv/bin/python -m mesh.tools.plugin install ~/Downloads/daily-practice-genie</code></li>
+          <li>Get a pairing code: <code>.venv/bin/python -m daily_practice_genie.pair</code>, and type it into Grown-ups → Genie on the tablet.</li>
+        </ol>
+        <p class="info-label">3 · THE SKILLS</p>
+        <ol>
+          <li><b>Sheet maker</b> writes each day's sheet; <b>Results review</b> reads what your child did and what to practise next.</li>
+          <li>Add the .zip as a skill in Claude, or attach its files in ChatGPT or Grok. Both ask for their inputs first and confirm before writing anything.</li>
+        </ol>
+        <p class="info-note">Everything stays yours: sheets and results live in your own repos, and the Genie only ever talks to your family's own devices, at home or over Tailscale - never a public server. The plugin can send WhatsApp messages to numbers you verify, and nothing else.</p>
       </div>
     </div>
 
@@ -181,19 +242,14 @@
   </footer>
 
   <script>
-    const overlay = document.getElementById('infoOverlay');
+    const overlays = document.querySelectorAll('.info-overlay');
+    const closeAll = () => overlays.forEach(o => o.classList.remove('open'));
     document.querySelectorAll('[data-info-open]').forEach(btn => {
-      btn.addEventListener('click', () => overlay.classList.add('open'));
+      btn.addEventListener('click', () => document.getElementById('info-' + btn.dataset.infoOpen).classList.add('open'));
     });
-    document.querySelectorAll('[data-info-close]').forEach(btn => {
-      btn.addEventListener('click', () => overlay.classList.remove('open'));
-    });
-    overlay.addEventListener('click', e => {
-      if (e.target === overlay) overlay.classList.remove('open');
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') overlay.classList.remove('open');
-    });
+    document.querySelectorAll('[data-info-close]').forEach(btn => btn.addEventListener('click', closeAll));
+    overlays.forEach(o => o.addEventListener('click', e => { if (e.target === o) closeAll(); }));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
   </script>
 </body>
 </html>
